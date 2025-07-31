@@ -14,12 +14,16 @@
       <![CDATA[Browser Termination successful]]>
     </line>
   </reporter-output>
-  <suite started-at="2025-07-28T09:44:28 IST" name="RegressionSuite" finished-at="2025-07-28T09:44:41 IST" duration-ms="12868">
+  <suite started-at="2025-07-31T11:00:52 IST" name="RegressionSuite" finished-at="2025-07-31T11:01:04 IST" duration-ms="11844">
     <groups>
     </groups>
-    <test started-at="2025-07-28T09:44:28 IST" name="Test" finished-at="2025-07-28T09:44:41 IST" duration-ms="12868">
+    <test started-at="2025-07-31T11:00:52 IST" name="Test" finished-at="2025-07-31T11:01:04 IST" duration-ms="11844">
       <class name="producttest.Example1Test">
-        <test-method is-config="true" signature="browserSetup(java.lang.String)[pri:0, instance:producttest.Example1Test@6babf3bf]" started-at="2025-07-28T09:44:28 IST" name="browserSetup" finished-at="2025-07-28T09:44:33 IST" duration-ms="5316" status="PASS">
+        <test-method is-config="true" signature="ReportSetup()[pri:0, instance:producttest.Example1Test@1bb266b3]" started-at="2025-07-31T11:00:52 IST" name="ReportSetup" finished-at="2025-07-31T11:00:52 IST" duration-ms="515" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ReportSetup -->
+        <test-method is-config="true" signature="browserSetup(java.lang.String)[pri:0, instance:producttest.Example1Test@1bb266b3]" started-at="2025-07-31T11:00:52 IST" name="browserSetup" finished-at="2025-07-31T11:00:56 IST" duration-ms="3877" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -33,14 +37,14 @@
             </line>
           </reporter-output>
         </test-method> <!-- browserSetup -->
-        <test-method is-config="true" signature="login()[pri:0, instance:producttest.Example1Test@6babf3bf]" started-at="2025-07-28T09:44:35 IST" name="login" finished-at="2025-07-28T09:44:35 IST" duration-ms="722" status="PASS">
+        <test-method is-config="true" signature="login()[pri:0, instance:producttest.Example1Test@1bb266b3]" started-at="2025-07-31T11:00:58 IST" name="login" finished-at="2025-07-31T11:00:59 IST" duration-ms="854" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[Application Login successful]]>
             </line>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method signature="Verify_If_User_Is_Able_To_Order_3_Products(java.lang.String,java.lang.String,java.lang.String)[pri:1, instance:producttest.Example1Test@6babf3bf]" started-at="2025-07-28T09:44:35 IST" name="Verify_If_User_Is_Able_To_Order_3_Products" data-provider="checkOutInfo" finished-at="2025-07-28T09:44:39 IST" duration-ms="3948" status="PASS">
+        <test-method signature="Verify_If_User_Is_Able_To_Order_3_Products(java.lang.String,java.lang.String,java.lang.String)[pri:1, instance:producttest.Example1Test@1bb266b3]" started-at="2025-07-31T11:00:59 IST" name="Verify_If_User_Is_Able_To_Order_3_Products" data-provider="checkOutInfo" finished-at="2025-07-31T11:01:02 IST" duration-ms="3497" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -61,20 +65,24 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Verify_If_User_Is_Able_To_Order_3_Products -->
-        <test-method is-config="true" signature="logout()[pri:0, instance:producttest.Example1Test@6babf3bf]" started-at="2025-07-28T09:44:39 IST" name="logout" finished-at="2025-07-28T09:44:40 IST" duration-ms="691" status="PASS">
+        <test-method is-config="true" signature="logout()[pri:0, instance:producttest.Example1Test@1bb266b3]" started-at="2025-07-31T11:01:02 IST" name="logout" finished-at="2025-07-31T11:01:03 IST" duration-ms="440" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[Application log out successful]]>
             </line>
           </reporter-output>
         </test-method> <!-- logout -->
-        <test-method is-config="true" signature="browserterminate()[pri:0, instance:producttest.Example1Test@6babf3bf]" started-at="2025-07-28T09:44:40 IST" name="browserterminate" finished-at="2025-07-28T09:44:41 IST" duration-ms="974" status="PASS">
+        <test-method is-config="true" signature="browserterminate()[pri:0, instance:producttest.Example1Test@1bb266b3]" started-at="2025-07-31T11:01:03 IST" name="browserterminate" finished-at="2025-07-31T11:01:03 IST" duration-ms="297" status="PASS">
           <reporter-output>
             <line>
               <![CDATA[Browser Termination successful]]>
             </line>
           </reporter-output>
         </test-method> <!-- browserterminate -->
+        <test-method is-config="true" signature="ReportTerminate()[pri:0, instance:producttest.Example1Test@1bb266b3]" started-at="2025-07-31T11:01:03 IST" name="ReportTerminate" finished-at="2025-07-31T11:01:04 IST" duration-ms="413" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ReportTerminate -->
       </class> <!-- producttest.Example1Test -->
     </test> <!-- Test -->
   </suite> <!-- RegressionSuite -->

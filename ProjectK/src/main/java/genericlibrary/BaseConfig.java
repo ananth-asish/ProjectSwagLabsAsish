@@ -5,10 +5,17 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import pagerepository.CheckoutCompletePage;
 import pagerepository.LoginPage;
@@ -16,16 +23,46 @@ import pagerepository.LogoutPage;
 
 public class BaseConfig {
 	public WebDriver driver;
-	public static  WebDriver staticDriver;
+	public static WebDriver staticDriver;
+	public ExtentReports report;
+	public ExtentSparkReporter spark;
+	public ExtentTest test;
+
+	@BeforeTest
+	public void ReportSetup() {
+		
+		// Create The SparkReport
+		spark = new ExtentSparkReporter("./AdvanceReports/report.html");
+
+		// Configure the Sparkreport Information
+		spark.config().setDocumentTitle("Regression testing For The Swag Labs");
+		spark.config().setReportName("Regression Suite");
+		spark.config().setTheme(Theme.DARK);
+
+		// Create the Extent Report
+		report = new ExtentReports();
+
+		// Attach the spark report ansd extent report
+		report.attachReporter(spark);
+
+		// Configure the system information
+		report.setSystemInfo("Device Name", "Ananth");
+		report.setSystemInfo("Operating System", "WINDOWS 11");
+		report.setSystemInfo("Browser", "Chrome");
+		report.setSystemInfo("Browser Version", "138.0.7204.184");
+
+	}
+
+	
 	// Step 1: Launch the browser
 	@Parameters("browserName")
 	@BeforeClass
 	public void browserSetup(String browser) {
 		// Step 1.1: Read browser from config
-		
+
 		// Step 1.2: Open browser
 		driver = WebDriverLibrary.openBrowser(browser);
-		staticDriver= driver;
+		staticDriver = driver;
 
 		// Step 1.3: Maximize browser
 		WebDriverLibrary.maximizeBrowser();
@@ -43,7 +80,7 @@ public class BaseConfig {
 		Reporter.log("Browser setup successful", true);
 	}
 
-	// Step 2: Login 
+	// Step 2: Login
 	@BeforeMethod
 	public void login() {
 		// Step 2.1: Wait for elements
@@ -55,7 +92,7 @@ public class BaseConfig {
 		Assert.assertTrue(lp.getusernametextfield().isDisplayed());
 
 		// Step 2.3: Enter username
-		
+
 		WebDriverLibrary.enterTheData(lp.getusernametextfield(), PropertiesLibrary.readData("username"));
 
 		// Step 2.4: Verify password text field displayed
@@ -86,7 +123,7 @@ public class BaseConfig {
 		LogoutPage lop = new LogoutPage(driver);
 		CheckoutCompletePage ccp = new CheckoutCompletePage(driver);
 
-		// Step 3.2: Click 'Back to Home' 
+		// Step 3.2: Click 'Back to Home'
 		Assert.assertTrue(ccp.getback2prod().isEnabled());
 		WebDriverLibrary.elementClick(ccp.getback2prod());
 
@@ -115,6 +152,13 @@ public class BaseConfig {
 		Reporter.log("Browser Termination successful", true);
 	}
 
+	
+	@AfterTest
+	public void ReportTerminate() {
+		// Flush the report Information
+		report.flush();
+
+	}
 	// Step 5: Provide checkout data
 	@DataProvider
 	public Object[][] checkOutInfo() {

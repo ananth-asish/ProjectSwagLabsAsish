@@ -4,6 +4,9 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import genericlibrary.BaseConfig;
 import genericlibrary.WebDriverLibrary;
 import pagerepository.CartPage;
@@ -20,6 +23,25 @@ public class Example1Test extends BaseConfig {
 	@Test(dataProvider = "checkOutInfo", priority = 1, invocationCount = 1)
 	public void Verify_If_User_Is_Able_To_Order_3_Products(String firstname, String lastname, String zip) {
 
+		// Create Test Information
+		test = report.createTest("Verify Order Product");
+
+		// Steps Information
+		test.log(Status.INFO, "Step1: Launching The Browser Successful");
+
+		test.log(Status.INFO, "Step2: Navigating To Application via URL Successful");
+
+		test.log(Status.PASS, "Step3: Verified the web page Successful ");
+
+		if (true) {
+			test.log(Status.PASS, "Step4: Verified the webelements Displayed");
+
+		} else {
+			test.log(Status.FAIL, "Step4: Verified the webelements not Displayed");
+
+		}
+		test.log(Status.SKIP, "Step5: Element is Hidden");
+
 		// Step 1: Object Creation for POM Classes
 		HomePage hp = new HomePage(driver);
 		CartPage cp = new CartPage(driver);
@@ -33,7 +55,8 @@ public class Example1Test extends BaseConfig {
 		Assert.assertTrue(hp.getfourthproduct().isDisplayed());
 		WebDriverLibrary.elementClick(hp.getfourthproduct());
 
-		// Step 3: Verify if "Sauce Labs Fleece Jacket" Product Details Page (PDP) is displayed
+		// Step 3: Verify if "Sauce Labs Fleece Jacket" Product Details Page (PDP) is
+		// displayed
 		Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory-item.html?id=5");
 
 		// Step 4: Click on "Add To Cart" Button
@@ -42,10 +65,10 @@ public class Example1Test extends BaseConfig {
 
 		// Step 5: Verify if count is incremented on Cart Icon (1)
 		Assert.assertTrue(hp.getCarticon1().isDisplayed());
-		
-		//Log
+
+		// Log
 		System.out.println("Sauce Labs Fleece Jacket - Added to cart");
-		
+
 		// Step 6: Click on "Back to products" button
 		Assert.assertTrue(pp1.getbacktoproducts().isEnabled());
 		WebDriverLibrary.elementClick(pp1.getbacktoproducts());
@@ -57,7 +80,8 @@ public class Example1Test extends BaseConfig {
 		Assert.assertTrue(hp.getthirdproduct().isDisplayed());
 		WebDriverLibrary.elementClick(hp.getthirdproduct());
 
-		// Step 9: Verify if "Sauce Labs Bolt T-Shirt" Product Details Page (PDP) is displayed
+		// Step 9: Verify if "Sauce Labs Bolt T-Shirt" Product Details Page (PDP) is
+		// displayed
 		Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory-item.html?id=1");
 
 		// Step 10: Click on "Add To Cart" Button
@@ -67,9 +91,9 @@ public class Example1Test extends BaseConfig {
 		// Step 11: Verify if count is incremented on Cart Icon (2)
 		Assert.assertTrue(hp.getCarticon2().isDisplayed());
 
-		//Log
+		// Log
 		System.out.println("Sauce Labs Bolt T-Shirt - Added to cart");
-		
+
 		// Step 12: Click on "Back to products" button
 		Assert.assertTrue(pp2.getbacktoproducts1().isEnabled());
 		WebDriverLibrary.elementClick(pp2.getbacktoproducts1());
@@ -81,16 +105,17 @@ public class Example1Test extends BaseConfig {
 		Assert.assertTrue(hp.getsecondproduct().isDisplayed());
 		WebDriverLibrary.elementClick(hp.getsecondproduct());
 
-		// Step 15: Verify if "Sauce Labs Bike Light" Product Details Page (PDP) is displayed
+		// Step 15: Verify if "Sauce Labs Bike Light" Product Details Page (PDP) is
+		// displayed
 		Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory-item.html?id=0");
 
 		// Step 16: Click on "Add To Cart" Button
 		Assert.assertTrue(pp3.getaddtocartbtn2().isEnabled());
 		WebDriverLibrary.elementClick(pp3.getaddtocartbtn2());
-		
-		//Log
+
+		// Log
 		System.out.println("Sauce Labs Bike Light - Added to cart");
-		
+
 		// Step 17: Verify if count is incremented on Cart Icon (3)
 		Assert.assertTrue(hp.getCarticon3().isDisplayed());
 
@@ -101,17 +126,18 @@ public class Example1Test extends BaseConfig {
 		// Step 19: Verify if Cart Page is displayed
 		Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/cart.html");
 
-		// Step 20: Verify the added products are listed with correct name, price, and quantity
-		String[] expectedNames = {"Sauce Labs Fleece Jacket","Sauce Labs Bolt T-Shirt", "Sauce Labs Bike Light"};
-		String[] expectedPrices = { "$49.99","$15.99", "$9.99"};
+		// Step 20: Verify the added products are listed with correct name, price, and
+		// quantity
+		String[] expectedNames = { "Sauce Labs Fleece Jacket", "Sauce Labs Bolt T-Shirt", "Sauce Labs Bike Light" };
+		String[] expectedPrices = { "$49.99", "$15.99", "$9.99" };
 		for (int i = 0; i < expectedNames.length; i++) {
-		    String actualName = cp.getItemNames().get(i).getText();
-		    String actualPrice = cp.getItemPrices().get(i).getText();
-		    String actualQty = cp.getItemQuantities().get(i).getText();
+			String actualName = cp.getItemNames().get(i).getText();
+			String actualPrice = cp.getItemPrices().get(i).getText();
+			String actualQty = cp.getItemQuantities().get(i).getText();
 
-		    Assert.assertEquals(actualName, expectedNames[i]);
-		    Assert.assertEquals(actualPrice, expectedPrices[i]);
-		    Assert.assertEquals(actualQty, "1");
+			Assert.assertEquals(actualName, expectedNames[i]);
+			Assert.assertEquals(actualPrice, expectedPrices[i]);
+			Assert.assertEquals(actualQty, "1");
 		}
 		System.out.println("All 3 products are valid in cart");
 
@@ -142,28 +168,30 @@ public class Example1Test extends BaseConfig {
 		// Step 27: Verify if "Checkout: Overview" page is displayed
 		Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/checkout-step-two.html");
 
-		// Step 28: Verify the added products are listed with correct name, price, and quantity
-		String[] expectedNamesCOP = {"Sauce Labs Fleece Jacket","Sauce Labs Bolt T-Shirt", "Sauce Labs Bike Light"};
-		String[] expectedPricesCOP = { "$49.99","$15.99", "$9.99"};
+		// Step 28: Verify the added products are listed with correct name, price, and
+		// quantity
+		String[] expectedNamesCOP = { "Sauce Labs Fleece Jacket", "Sauce Labs Bolt T-Shirt", "Sauce Labs Bike Light" };
+		String[] expectedPricesCOP = { "$49.99", "$15.99", "$9.99" };
 		for (int i = 0; i < expectedNames.length; i++) {
-		    String actualName = cop.getItemNames().get(i).getText();
-		    String actualPrice = cop.getItemPrices().get(i).getText();
-		    String actualQty = cop.getItemQuantities().get(i).getText();
+			String actualName = cop.getItemNames().get(i).getText();
+			String actualPrice = cop.getItemPrices().get(i).getText();
+			String actualQty = cop.getItemQuantities().get(i).getText();
 
-		    Assert.assertEquals(actualName, expectedNamesCOP[i]);
-		    Assert.assertEquals(actualPrice, expectedPricesCOP[i]);
-		    Assert.assertEquals(actualQty, "1");
+			Assert.assertEquals(actualName, expectedNamesCOP[i]);
+			Assert.assertEquals(actualPrice, expectedPricesCOP[i]);
+			Assert.assertEquals(actualQty, "1");
 		}
 		System.out.println("All 3 products are valid in Checkout-Overview page");
-		
+
 		// Step 29: Click on "Finish" button
-		Assert.assertTrue(cop.getfinishbtn().isEnabled());		
+		Assert.assertTrue(cop.getfinishbtn().isEnabled());
 		WebDriverLibrary.elementClick(cop.getfinishbtn());
 
-		// Step 30: Verify if "Checkout: Complete" Page is displayed with order confirmation
+		// Step 30: Verify if "Checkout: Complete" Page is displayed with order
+		// confirmation
 		Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/checkout-complete.html");
-		
-		//Log
+
+		// Log
 		System.out.println("Products ordered succesfully");
 
 	}
