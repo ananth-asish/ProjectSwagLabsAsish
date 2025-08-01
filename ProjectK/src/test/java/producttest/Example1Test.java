@@ -65,6 +65,7 @@ public class Example1Test extends BaseConfig {
 		// Step 4: Click on "Add To Cart" Button
 		Assert.assertTrue(pp1.getaddtocartbtn().isEnabled());
 		
+		
 		if (pp1.getaddtocartbtn().isEnabled()) {
 			test.log(Status.PASS, "Verified the Add To Cart button is Displayed");
 
